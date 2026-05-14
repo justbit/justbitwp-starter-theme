@@ -159,11 +159,15 @@ function jbw_sitemap_hreflang_alternates( WP_Post $post ): array {
 
 /**
  * Helper: il sito è in maintenance? Legge env MAINTENANCE_MODE (default 0).
+ * Wrapped per non collidere con la definizione in robots.php / seo.php
+ * (autoload alfabetico carica seo.php DOPO sitemap.php, robots.php DOPO).
  */
-function jbw_in_maintenance_mode(): bool {
-    $env = getenv( 'MAINTENANCE_MODE' );
-    if ( $env === '1' || $env === 'true' ) return true;
-    return defined( 'MAINTENANCE_MODE' ) && constant( 'MAINTENANCE_MODE' );
+if ( ! function_exists( 'jbw_in_maintenance_mode' ) ) {
+    function jbw_in_maintenance_mode(): bool {
+        $env = getenv( 'MAINTENANCE_MODE' );
+        if ( $env === '1' || $env === 'true' ) return true;
+        return defined( 'MAINTENANCE_MODE' ) && constant( 'MAINTENANCE_MODE' );
+    }
 }
 
 /**
