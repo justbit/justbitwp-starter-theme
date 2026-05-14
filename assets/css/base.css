@@ -1,0 +1,37 @@
+/* Base + a11y safety nets */
+
+/* Skip link */
+.skip-link.screen-reader-text {
+  position: absolute; left: -9999px; top: auto;
+  width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; width: auto; height: auto;
+  background: var(--wp--preset--color--primary); color: #fff;
+  padding: 0.75rem 1rem; border-radius: var(--radius);
+  z-index: 10000;
+}
+
+/* Focus rinforzato */
+*:focus-visible {
+  outline: 3px solid var(--wp--preset--color--cta);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* prefers-reduced-motion safety net */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Smooth scroll opt-in (rispetta reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+img, picture { max-width: 100%; height: auto; }

@@ -1,0 +1,21 @@
+/*
+Theme Name:   Justbit WP Starter
+Theme URI:    https://github.com/justbit/justbitwp-starter-theme
+Author:       Justbit
+Author URI:   https://justbit.it
+Description:  Starter theme block-based FSE per lo stack Justbit WP. Design tokens via theme.json, accessibility WCAG AA, performance baseline PSI 95+, PWA-ready, OG dinamiche, multilingua-ready. Personalizza palette/typography in theme.json e parts/templates per il tuo progetto.
+Version:      0.1.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.1
+License:      GPL-2.0-or-later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  justbitwp-starter
+Tags:         block-templates, full-site-editing, accessibility-ready, custom-colors, custom-logo, custom-menu, featured-images, translation-ready, wide-blocks
+
+This theme is meant to be PERSONALIZED. Edit theme.json to set your
+design tokens (palette, typography, spacing) and patterns/* to compose
+your pages. Do NOT change the slug `justbitwp-starter` in the bootstrap
+process; the bootstrap renames the theme directory + Text Domain to
+match your project's THEME_SLUG.
+*/

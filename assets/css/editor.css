@@ -1,0 +1,6 @@
+/* Stili applicati DENTRO al block editor di WP-admin.
+   Riusa i token, così il preview nell'editor è fedele al frontend. */
+.editor-styles-wrapper {
+  font-family: var(--wp--preset--font-family--body);
+  color: var(--wp--preset--color--text);
+}

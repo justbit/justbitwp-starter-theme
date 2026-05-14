@@ -1,0 +1,18 @@
+/* Component styles minimi.
+   Estendi qui le custom class che usi nei patterns. */
+
+.button,
+.wp-block-button__link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: transform var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+.button:hover,
+.wp-block-button__link:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.button:active,
+.wp-block-button__link:active {
+  transform: translateY(0) scale(0.98);
+}
