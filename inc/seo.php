@@ -22,7 +22,10 @@ add_action( 'wp_head', function() {
     echo '<meta property="og:description" content="' . esc_attr( $desc ) . "\">\n";
     echo '<meta property="og:type" content="' . ( is_singular() ? 'article' : 'website' ) . "\">\n";
     echo '<meta property="og:url" content="' . esc_url( home_url( add_query_arg( null, null ) ) ) . "\">\n";
-    if ( has_post_thumbnail() ) {
+    // OG image: featured image se c'è, altrimenti SVG dinamica (vedi inc/og-image.php).
+    if ( function_exists( 'jbw_og_image_url' ) ) {
+        echo '<meta property="og:image" content="' . esc_url( jbw_og_image_url() ) . "\">\n";
+    } elseif ( has_post_thumbnail() ) {
         echo '<meta property="og:image" content="' . esc_url( get_the_post_thumbnail_url( null, 'large' ) ) . "\">\n";
     }
     echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
