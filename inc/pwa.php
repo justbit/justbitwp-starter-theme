@@ -36,6 +36,26 @@ add_filter( 'query_vars', function( $vars ) {
 } );
 
 /**
+ * IMPORTANTE: disabilita `redirect_canonical` per gli endpoint custom.
+ *
+ * WordPress di default redirige /sw.js → /sw.js/ (trailing slash). Per
+ * Service Worker e manifest.json questo è ROTTO:
+ *   - Browser strict: SW Content-Type DEVE essere application/javascript
+ *     e il redirect 301 fa fallire registration con SecurityError
+ *   - PWA install prompt cerca /manifest.json esatto, no redirect
+ *
+ * Stesso fix anche per /health (monitoring tools come UptimeRobot non
+ * seguono redirect di default) e /offline (UX: doppia request inutile).
+ */
+add_filter( 'redirect_canonical', function( $redirect_url, $requested_url ) {
+    $custom_qvs = [ 'jbw_sw', 'jbw_manifest', 'jbw_offline' ];
+    foreach ( $custom_qvs as $qv ) {
+        if ( get_query_var( $qv ) ) return false;
+    }
+    return $redirect_url;
+}, 10, 2 );
+
+/**
  * Router custom — intercetta le tre rewrite rules sopra.
  */
 add_action( 'template_redirect', function() {

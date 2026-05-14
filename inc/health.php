@@ -26,6 +26,16 @@ add_filter( 'query_vars', function( $vars ) {
     return $vars;
 } );
 
+/**
+ * Disabilita trailing-slash redirect su /health.
+ * Monitoring tools (UptimeRobot, BetterStack) NON seguono redirect di
+ * default — vedono 301 e dichiarano il sito down. Serve risposta diretta.
+ */
+add_filter( 'redirect_canonical', function( $redirect_url, $requested_url ) {
+    if ( get_query_var( 'jbw_health' ) ) return false;
+    return $redirect_url;
+}, 10, 2 );
+
 add_action( 'template_redirect', function() {
     if ( get_query_var( 'jbw_health' ) ) {
         $start = microtime( true );

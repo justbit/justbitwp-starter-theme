@@ -10,7 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'JBW_THEME_VERSION', '0.3.1' );
+define( 'JBW_THEME_VERSION', '0.3.3' );
 define( 'JBW_THEME_DIR', get_template_directory() );
 define( 'JBW_THEME_URI', get_template_directory_uri() );
 
